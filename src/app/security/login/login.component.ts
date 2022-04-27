@@ -1,6 +1,8 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   public formLogin:FormGroup;
 
-  constructor(private fb:FormBuilder, private toast:ToastrService) { 
+  constructor(private fb:FormBuilder, private loginService:LoginService, private route:Router, private toast:ToastrService) { 
     this.formLogin = this.criarFormLogin();
   }
 
@@ -32,5 +34,19 @@ export class LoginComponent implements OnInit {
   }
 
 
+  public submitForm(){
+    const {username, password} = this.formLogin.value;
+    this.formLogin.reset;
+
+    this.loginService.login(username, password).subscribe(
+      res => {
+        this.toast.success("Login efetuado com sucesso");
+        this.route.navigate(['']);
+      },
+      err =>{
+        this.toast.error(err);
+      }
+    )
+  }
 
 }

@@ -8,7 +8,7 @@
             </div>
 
             <div class="card-body">
-                <form [formGroup]="formLogin">
+                <form [formGroup]="formLogin" >
                     <div class="mb-3">
                         <label class="form-label">Username</label>
                         <input type="text" class="form-control" formControlName="username">
@@ -20,7 +20,7 @@
                         <div class="form-text text-danger" *ngIf="isFormControlInvalid('password')"> O password deve conter pelo menos 6 caracteres.</div>
                     </div>
 
-                    <button type="button" class="btn btn-primary" [disabled]="!formLogin.valid">
+                    <button type="button" class="btn btn-primary" [disabled]="!formLogin.valid" (click)="submitForm()">
                         Entrar
                     </button>
                 </form>
