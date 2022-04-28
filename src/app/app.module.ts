@@ -9,7 +9,9 @@ import { LoginComponent } from './security/login/login.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './security/auth.interceptor';
+import { AuthGuard } from './security/auth.guard';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,15 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:AuthInterceptor,
+      multi:true
+
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
