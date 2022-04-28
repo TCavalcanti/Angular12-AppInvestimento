@@ -11,8 +11,8 @@ const routes: Routes = [
   {
     path:'', component:LayoutComponent,
     children:[
-      {path:'', component:HomeComponent}
-      // {path:'clients', component:HomeComponent}
+      {path:'', component:HomeComponent},
+      {path:'clients', loadChildren:()=> import('./pages/clients/clients.module').then(m=>m.ClientsModule)}
     ]
   },
 
