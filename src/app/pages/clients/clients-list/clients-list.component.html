@@ -11,7 +11,7 @@
                 <th>Email</th>
                 <th>
                     Ação &nbsp;
-                    <button type="button" class="btn btn-sm btn-success">
+                    <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#addNewClient">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-plus" viewBox="0 0 16 16">
                             <path
@@ -68,5 +68,27 @@
         </tbody>
 
     </table>
+
+</div>
+
+
+
+<div class="modal fade" id="addNewClient" target="-1">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Adicionar novo Cliente
+                </h5>
+            </div>
+            <div class="modal-body">
+                <app-clients-new (newClient)="updateList($event)"></app-clients-new>
+            </div>
+
+        </div>
+
+    </div>
 
 </div>

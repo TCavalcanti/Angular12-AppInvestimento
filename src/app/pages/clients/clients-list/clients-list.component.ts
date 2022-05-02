@@ -28,4 +28,13 @@ export class ClientsListComponent implements OnInit {
 
   }
 
+
+
+
+  updateList($event:Client){
+
+    this.listClients.push($event)
+
+  }
+
 }

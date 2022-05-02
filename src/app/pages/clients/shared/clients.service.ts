@@ -28,12 +28,31 @@ export class ClientsService{
     }
 
 
+
+    public saveNew(newClient:Client):Observable<Client>{
+        
+        const url = `${environment.baseUrlBackend}/clients`
+
+        return this.http.post(url, newClient).pipe(
+            map(this.mapToClient)
+        )
+    }
+
+
     private mapToClients(data:any):Array<Client>{
         const listClients: Client[] = [];
 
         data.forEach((e:any) => listClients.push(Object.assign(new Client, e)))
 
         return listClients;
+    }
+
+
+    private mapToClient(data:any):Client{
+        
+
+        return (Object.assign(new Client, data))
+
     }
 
 }
