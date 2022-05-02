@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Client } from '../shared/client.model';
 import { ClientsService } from '../shared/clients.service';
 
@@ -11,7 +12,7 @@ export class ClientsListComponent implements OnInit {
 
   public listClients:Array<Client> = [];
 
-  constructor(private clientService:ClientsService) { }
+  constructor(private clientService:ClientsService, private toastr:ToastrService) { }
 
   ngOnInit(): void {
 
@@ -22,9 +23,21 @@ export class ClientsListComponent implements OnInit {
   }
 
 
-  public removerClient(clienId:any){
+  public removerClient(clientId:any){
 
-    console.log("Remover client de id: ", clienId)
+    if(!window.confirm(`Deseja excluir o cliente de id: ${clientId}`)){
+      return;
+    }
+
+    this.clientService.delete(clientId).subscribe(
+      res => {
+        this.toastr.success(`Cliente de ID ${clientId} excluído com sucesso!`)
+        this.listClients = this.listClients.filter( e => e.id !== clientId);
+      },
+      err =>{
+        this.toastr.error(`Falha ao excluir cliente de ID ${clientId}!`)
+      }
+    )
 
   }
 

@@ -59,6 +59,14 @@ export class ClientsService{
     }
 
 
+    public delete(clientId:number):Observable<any>{
+
+        const url = `${environment.baseUrlBackend}/clients/${clientId}`
+        return this.http.delete(url, {responseType:'json'})
+    }
+
+
+
     private mapToClients(data:any):Array<Client>{
         const listClients: Client[] = [];
 
