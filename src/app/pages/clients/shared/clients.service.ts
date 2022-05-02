@@ -27,6 +27,16 @@ export class ClientsService{
 
     }
 
+    public listById(id:number): Observable<Client>{
+
+        const url = `${environment.baseUrlBackend}/clients/${id}`
+
+        return this.http.get(url).pipe(
+            map(this.mapToClient)
+        )
+
+    }
+
 
 
     public saveNew(newClient:Client):Observable<Client>{
@@ -34,6 +44,16 @@ export class ClientsService{
         const url = `${environment.baseUrlBackend}/clients`
 
         return this.http.post(url, newClient).pipe(
+            map(this.mapToClient)
+        )
+    }
+
+
+    public update(client:Client):Observable<Client>{
+        
+        const url = `${environment.baseUrlBackend}/clients/${client.id}`
+
+        return this.http.put(url, client).pipe(
             map(this.mapToClient)
         )
     }
