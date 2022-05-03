@@ -6,13 +6,15 @@ import { ClientsListComponent } from './clients-list/clients-list.component';
 import { ClientsNewComponent } from './clients-new/clients-new.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ClientsEditComponent } from './clients-edit/clients-edit.component';
+import { ClientsViewComponent } from './clients-view/clients-view.component';
 
 
 @NgModule({
   declarations: [
     ClientsListComponent,
     ClientsNewComponent,
-    ClientsEditComponent
+    ClientsEditComponent,
+    ClientsViewComponent
   ],
   imports: [
     CommonModule,
