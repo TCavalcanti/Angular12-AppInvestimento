@@ -7,6 +7,7 @@ import { ClientsNewComponent } from './clients-new/clients-new.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ClientsEditComponent } from './clients-edit/clients-edit.component';
 import { ClientsViewComponent } from './clients-view/clients-view.component';
+import { InvestmentsModule } from '../investments/investments.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ClientsViewComponent } from './clients-view/clients-view.component';
   imports: [
     CommonModule,
     ClientsRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    InvestmentsModule
   ]
 })
 export class ClientsModule { }
